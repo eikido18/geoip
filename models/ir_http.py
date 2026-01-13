@@ -1,12 +1,8 @@
 from odoo import models
 
-class IrHttp(models.AbstractModel):
-    _inherit = 'ir.http'
+class Website(models.Model):
+    _inherit = 'website'
 
-    @classmethod
-    def _get_geoip_response(cls, ip_address):
-        """
-        Overriding the GeoIP lookup to return None.
-        This prevents Odoo from assigning a country code based on IP.
-        """
-        return None
+    def _get_geoip_country_code(self):
+        """Disable automatic country detection"""
+        return False
